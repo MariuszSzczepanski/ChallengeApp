@@ -4,11 +4,11 @@ int Age = 29;
 
 if (Age > 30 & name == "Ewa")
 {
-    Console.WriteLine("Jestem Ewa i mam poniżej 30 lat");
+    Console.WriteLine("Jestem Ewa i mam więcej niż 30 lat");
 }
 else if (Age < 30 & name == "Marek" & isFemale == false) 
 {
-    Console.WriteLine("Jestem Paulina i mam poniżej 30lat");
+    Console.WriteLine("Jestem Marek i mam mniej niż 30 lat");
 }
 else if (Age == 29 & name == "Ewa" & isFemale == true)
 {
