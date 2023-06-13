@@ -1,72 +1,47 @@
-﻿int number = 232425;
-string numberAsString = number.ToString();
-char[] letters = numberAsString.ToArray();
+﻿using ChallengeApp;
 
-int counter0 = 0;
-int counter1 = 0;
-int counter2 = 0;
-int counter3 = 0;
-int counter4 = 0;
-int counter5 = 0;
-int counter6 = 0;
-int counter7 = 0;
-int counter8 = 0;
-int counter9 = 0;
+Employee emp1 = new Employee("Jarosław", "Baryła", 33);
+Employee emp2 = new Employee("Jan", "Kowalski", 35);
+Employee emp3 = new Employee("Marlena", "Hula", 28);
 
-foreach (char letter in letters)
+
+
+emp1.AddScore(9);
+emp1.AddScore(4);
+emp1.AddScore(3);
+emp1.AddScore(7);
+emp1.AddScore(5);
+
+emp2.AddScore(5);
+emp2.AddScore(6);
+emp2.AddScore(9);
+emp2.AddScore(8);
+emp2.AddScore(3);
+
+emp3.AddScore(6);
+emp3.AddScore(9);
+emp3.AddScore(6);
+emp3.AddScore(4);
+emp3.AddScore(4);
+
+List<Employee> emps = new List<Employee>()
 {
-    if (letter == '0')
+    emp1, emp2, emp3
+};
+
+int maxResult = -1;
+Employee empWithMaxResult = null;
+
+foreach (var emp in emps)
+{
+    if(emp.Result > maxResult)
     {
-        counter0++;
-    }
-    else if (letter == '1')
-    {
-        counter1++;
-    }
-    else if (letter == '2')
-    {
-        counter2++;
-    }
-    else if (letter == '3')
-    {
-        counter3++;
-    }
-    else if (letter == '4')
-    {
-        counter4++;
-    }
-    else if (letter == '5')
-    {
-        counter5++;
-    }
-    else if (letter == '6')
-    {
-        counter6++;
-    }
-    else if (letter == '7')
-    {
-        counter7++;
-    }
-    else if (letter == '8')
-    {
-        counter8++;
-    }
-    else if (letter == '9')
-    {
-        counter9++;
+        maxResult = emp.Result;
+        empWithMaxResult = emp;
     }
 }
-    
-        Console.WriteLine("Wyniki dla liczby");
-        Console.WriteLine("0 = " + counter0);
-        Console.WriteLine("1 = " + counter1);
-        Console.WriteLine("2 = " + counter2);
-        Console.WriteLine("3 = " + counter3);
-        Console.WriteLine("4 = " + counter4);
-        Console.WriteLine("5 = " + counter5);
-        Console.WriteLine("6 = " + counter6);
-        Console.WriteLine("7 = " + counter7);
-        Console.WriteLine("8 = " + counter8);
-        Console.WriteLine("9 = " + counter9);
-    
+
+Console.WriteLine("Pracownik z najwyższą liczbą ocen : " + empWithMaxResult.Name + " " + empWithMaxResult.Surname);
+Console.WriteLine("Liczba punktów : " + empWithMaxResult.Result);
+
 
