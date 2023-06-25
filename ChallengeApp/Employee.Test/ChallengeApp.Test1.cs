@@ -1,7 +1,7 @@
 
 namespace ChallengeApp.Test
 {
-    public class Tests
+    public class EmployeeTest
     {
 
 
