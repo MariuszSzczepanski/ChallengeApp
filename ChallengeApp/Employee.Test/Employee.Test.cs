@@ -5,59 +5,56 @@ namespace ChallengeApp.Test
     public class EmployeeTests
     {
         [Test]
-        public void StatisticsMax()
+        public void AverageValue()
         {
             //arange - przygotowanie
             var employee = new Employee("Mariusz", "Szczepański");
-            employee.AddGrade(2);
-            employee.AddGrade(4);
+            employee.AddGrade(5);
+            employee.AddGrade(9);
             employee.AddGrade(7);
 
             //act - uruchamianie
             var statistics = employee.GetStatistics();
 
             //assert - sprawdzanie
-            Assert.AreEqual(7, statistics.Max);
+            Assert.AreEqual(7, statistics.Average);
 
 
         }
 
         [Test]
-        public void StatisticsMin()
+        public void LetterA()
         {
             //arange - przygotowanie
             var employee = new Employee("Mariusz", "Szczepański");
-            employee.AddGrade(2);
-            employee.AddGrade(4);
-            employee.AddGrade(7);
+            employee.AddGrade(80);
+            employee.AddGrade(88);
+            employee.AddGrade(90);
 
             //act - uruchamianie
             var statistics = employee.GetStatistics();
 
             //assert - sprawdzanie
-            Assert.AreEqual(2, statistics.Min);
+            Assert.AreEqual('A', statistics.AverageLetter);
 
 
         }
 
         [Test]
-        public void StatisticsAverage()
+        public void LetterD()
         {
             //arange - przygotowanie
             var employee = new Employee("Mariusz", "Szczepański");
-            employee.AddGrade(2);
-            employee.AddGrade(4);
-            employee.AddGrade(7);
+            employee.AddGrade(20);
+            employee.AddGrade(35);
+            employee.AddGrade(30);
 
             //act - uruchamianie
             var statistics = employee.GetStatistics();
 
             //assert - sprawdzanie
-            Assert.AreEqual(Math.Round(4.33, 2), Math.Round(statistics.Average, 2));
-
+            Assert.AreEqual('D', statistics.AverageLetter);
 
         }
-
-
     }
 }
