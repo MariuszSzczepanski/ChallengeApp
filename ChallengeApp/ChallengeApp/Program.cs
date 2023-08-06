@@ -1,4 +1,5 @@
-﻿using ChallengeApp;
+﻿using System.Linq.Expressions;
+using ChallengeApp;
 
 Console.WriteLine($"Witamy w programie XYZ do oceny pracowników");
 Console.WriteLine($"===========================================");
@@ -14,7 +15,14 @@ while (true)
     {
         break;
     }
-    employee.AddGrade(input);
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Exception catched: {e.Message}");
+    }
 }
 
 var statistics = employee.GetStatistics();
