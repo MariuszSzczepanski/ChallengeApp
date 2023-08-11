@@ -5,7 +5,7 @@ namespace ChallengeApp.Test
     public class EmployeeTests
     {
         [Test]
-        public void AverageValue()
+        public void TheAverageOfNumberSShouldShowAverageValue()
         {
             //arange - przygotowanie
             var employee = new Employee("Mariusz", "Szczepański");
@@ -23,7 +23,7 @@ namespace ChallengeApp.Test
         }
 
         [Test]
-        public void LetterA()
+        public void WhenTheNumbursFitInCorrectLetterThenShouldBeA()
         {
             //arange - przygotowanie
             var employee = new Employee("Mariusz", "Szczepański");
@@ -41,7 +41,7 @@ namespace ChallengeApp.Test
         }
 
         [Test]
-        public void LetterD()
+        public void WhenTheNumbursFitInCorrectLetterThenShouldBeD ()
         {
             //arange - przygotowanie
             var employee = new Employee("Mariusz", "Szczepański");
