@@ -1,15 +1,19 @@
 ﻿
 namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname, string sex)
-            :base(name, surname, sex)
+        public Employee(string name, string surname)
         {
-
+            this.Name = name;
+            this.Surname = surname;
         }
+
+        public string Name { get; private set; }
+
+        public string Surname { get; private set; }
 
         public void AddGrade(float grade)
         {
@@ -28,7 +32,7 @@ namespace ChallengeApp
 
         public void AddGrade(string grade)
         {
-            if(float.TryParse(grade, out float result))
+            if (float.TryParse(grade, out float result))
             {
                 this.AddGrade(result);
             }
@@ -82,7 +86,7 @@ namespace ChallengeApp
             statistics.Average = 0;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
-            
+
 
             foreach (var grade in this.grades)
             {
@@ -93,7 +97,7 @@ namespace ChallengeApp
 
             statistics.Average /= this.grades.Count;
 
-            switch(statistics.Average)
+            switch (statistics.Average)
             {
                 case var average when average >= 80:
                     statistics.AverageLetter = 'A';
