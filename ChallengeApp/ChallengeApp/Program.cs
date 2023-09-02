@@ -5,13 +5,13 @@ Console.WriteLine($"Witamy w programie XYZ do oceny pracowników");
 Console.WriteLine($"===========================================");
 Console.WriteLine();
 
-var employee = new Supervisor("Mariusz","Szczepański");
+var employee = new EmployeeInFile("Mariusz","Szczepański");
 
 while (true)
 {
     Console.WriteLine("Podaj kolejną ocenę pracownika:");
     var input = Console.ReadLine();
-    if (input == "q") 
+    if (input == "q")
     {
         break;
     }

@@ -16,18 +16,31 @@
         public string Surname { get; private set; }
 
         public void AddGrade(float grade)
-        {
-            throw new NotImplementedException();
-        }
+        
+            {
+                int valueInInt = (int)grade;
+                float f = valueInInt;
 
-        public void AddGrade(double grade)
+                if (grade >= 0 && grade <= 100)
+                {
+                    this.grades.Add(grade);
+                }
+                else
+                {
+                    throw new Exception("invalid grade value");
+                }
+            }
+
+            public void AddGrade(double grade)
         {
-            throw new NotImplementedException();
+            float gradeAsFloat = (float)grade;
+            this.AddGrade(gradeAsFloat);
         }
 
         public void AddGrade(int grade)
         {
-            throw new NotImplementedException();
+            float gradeAsFloat = grade;
+            this.AddGrade(gradeAsFloat);
         }
 
         public void AddGrade(char grade)
