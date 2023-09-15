@@ -4,6 +4,8 @@ using System.Security.Cryptography.X509Certificates;
 namespace ChallengeApp
 {
     internal class EmployeeInFile : EmployeeBase
+
+
     {
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname) 
@@ -15,10 +17,12 @@ namespace ChallengeApp
         {
             if (grade >= 0 && grade <= 100)
 
+
             {
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+
                 }
             }
             else
