@@ -7,11 +7,17 @@ namespace ChallengeApp
 
 
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
-        public EmployeeInFile(string name, string surname) 
+        public EmployeeInFile(string name, string surname)
             : base(name, surname)
         {
         }
+
+        private List<float> grades = new List<float>();
 
         public override void AddGrade(float grade)
         {
@@ -22,12 +28,11 @@ namespace ChallengeApp
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
-
                 }
             }
-            else
+            if (GradeAdded != null)
             {
-                throw new Exception("string is not float");
+                GradeAdded(this, new EventArgs());
             }
         }
 
@@ -82,15 +87,10 @@ namespace ChallengeApp
         }
 
 
-        public override Statistics GetStatistics()
-        {
-            var gradesFromFile = this.ReadGradesFromFile();
-            var result = this.CountStatistics(gradesFromFile);
-            return result;
-        }
+
 
         private List<float> ReadGradesFromFile()
-        { 
+        {
             var grades = new List<float>();
             if (File.Exists($"{fileName}"))
             {
@@ -108,42 +108,13 @@ namespace ChallengeApp
             return grades;
         }
 
-        private Statistics CountStatistics(List<float> grades)
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
 
-            foreach (var grade in grades)
+            foreach (var grade in this.grades)
             {
-                if (grade >= 0)
-                {
-                    statistics.Max = Math.Max(statistics.Max, grade);
-                    statistics.Min = Math.Min(statistics.Min, grade);
-                    statistics.Average += grade;
-                }
-            }
-
-            statistics.Average /= grades.Count;
-
-            switch (statistics.Average)
-            {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
+                statistics.AddGrade(grade);
             }
 
             return statistics;
