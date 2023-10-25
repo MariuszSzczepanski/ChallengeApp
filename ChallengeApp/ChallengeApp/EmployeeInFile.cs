@@ -2,6 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 
 namespace ChallengeApp
+
 {
     internal class EmployeeInFile : EmployeeBase
 
@@ -22,8 +23,6 @@ namespace ChallengeApp
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
-
-
             {
                 using (var writer = File.AppendText(fileName))
                 {
@@ -35,7 +34,6 @@ namespace ChallengeApp
                 GradeAdded(this, new EventArgs());
             }
         }
-
 
         public override void AddGrade(string grade)
         {
@@ -86,8 +84,12 @@ namespace ChallengeApp
             }
         }
 
-
-
+        public override Statistics GetStatistics()
+        {
+            var gradesFromFile = this.ReadGradesFromFile();
+            var result = this.CountStatistics(gradesFromFile);
+            return result;
+        }
 
         private List<float> ReadGradesFromFile()
         {
@@ -108,16 +110,18 @@ namespace ChallengeApp
             return grades;
         }
 
-        public override Statistics GetStatistics()
+        public override Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
 
-            foreach (var grade in this.grades)
+            foreach (var grade in grades)
             {
-                statistics.AddGrade(grade);
+                if (grade >= 0)
+                {
+                    statistics.AddGrade(grade);
+                }
+                return statistics;
             }
-
-            return statistics;
         }
     }
 }
