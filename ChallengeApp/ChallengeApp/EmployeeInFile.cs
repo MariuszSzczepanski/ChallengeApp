@@ -110,10 +110,9 @@ namespace ChallengeApp
             return grades;
         }
 
-        public override Statistics CountStatistics(List<float> grades)
+        private Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
-
             foreach (var grade in grades)
             {
                 if (grade >= 0)
